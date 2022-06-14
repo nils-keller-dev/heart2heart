@@ -1,0 +1,12 @@
+{
+  "name": "heart2heart",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "server": "node server"
+  },
+  "dependencies": {
+    "ws": "^8.8.0"
+  }
+}
