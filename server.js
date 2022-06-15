@@ -1,54 +1,27 @@
-// import WebSocket, { WebSocketServer } from 'ws';
+const express = require("express");
+const WebSocket = require("ws");
+const SocketServer = require("ws").Server;
 
-// const wss = new WebSocketServer({ port: 8080 });
-
-// wss.on('connection', ws => {
-//   ws.on('message', message => {
-//     wss.clients.forEach((client) => {
-//       if (client !== ws && client.readyState === WebSocket.OPEN) {
-//         client.send(message, { binary: false });
-//       }
-//     })
-//   })
-// })
-
-
-
-var WebSocketServer = require('websocket').server;
-var http = require('http');
-
-var server = http.createServer(function(request, response) {
-  // process HTTP request. Since we're writing just WebSockets
-  // server we don't have to implement anything.
-});
-server.listen(8080, function() { });
-
-// create the server
-wsServer = new WebSocketServer({
-  httpServer: server
+const server = express().listen(8080, () => {
+  console.log("Server started at port 8080");
 });
 
-// WebSocket server
-wsServer.on('request', function(request) {
-  var connection = request.accept(null, request.origin);
+const wss = new SocketServer({ server });
 
-  // This is the most important callback for us, we'll handle
-  // all messages from users here.
-  connection.on('message', function(message) {
-    if (message.type === 'utf8') {
-      // process WebSocket message
-      // console.log((wsServer))
-      // wsServer.clients.forEach((client) => {
-      // if (client !== ws && client.readyState === WebSocket.OPEN) {
-      //   client.send(message, { binary: false });
-      // }
-    // })
-      console.log(message);
-      connection.sendUTF(message.utf8Data);
-    }
+wss.on("connection", (ws) => {
+  console.log("[Server] A client was connected.");
+
+  ws.on("close", () => {
+    console.log("[Server] Client disconnected.");
   });
 
-  connection.on('close', function(connection) {
-    // close user connection
+  ws.on("message", (message) => {
+    console.log("[Server] Received message: %s", message);
+
+    wss.clients.forEach(function each(client) {
+      if (client !== ws && client.readyState === WebSocket.OPEN) {
+        client.send(message, { binary: false });
+      }
+    });
   });
 });
