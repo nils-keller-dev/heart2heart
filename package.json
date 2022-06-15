@@ -2,11 +2,11 @@
   "name": "heart2heart",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "server": "node server"
   },
   "dependencies": {
+    "websocket": "^1.0.34",
     "ws": "^8.8.0"
   }
 }
