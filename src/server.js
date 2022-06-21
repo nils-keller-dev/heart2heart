@@ -1,6 +1,9 @@
 import WebSocket, { WebSocketServer } from "ws";
+import log from "./logger.js";
 
 const wss = new WebSocketServer({ port: 8080 });
+
+log("websocket server started");
 
 wss.on("connection", (ws, req) => {
   const ip = `${req.socket.remoteAddress}:${req.socket.remotePort}`;
@@ -25,9 +28,3 @@ wss.on("connection", (ws, req) => {
     console.error(error);
   });
 });
-
-const log = (text, ip, error = false) => {
-  const date = new Date();
-  const message = `[${date.toLocaleDateString()} ${date.toLocaleTimeString()}] ${ip} - ${text}`;
-  error ? console.error(message) : console.log(message);
-};
