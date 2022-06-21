@@ -6,12 +6,12 @@ wss.on("connection", (ws, req) => {
   const ip = `${req.socket.remoteAddress}:${req.socket.remotePort}`;
   log("connection opened", ip);
 
-  ws.on("message", (message, binary) => {
+  ws.on("message", (message) => {
     log("new message:", ip);
     console.log(message.toString());
     wss.clients.forEach((client) => {
       if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(message, binary);
+        client.send(message, { binary: false });
       }
     });
   });
