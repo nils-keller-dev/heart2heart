@@ -1,9 +1,20 @@
-const log = (text, ip, error = false) => {
+const getDateTimeString = () => {
   const date = new Date();
-  const message = `[${date.toLocaleDateString()} ${date.toLocaleTimeString()}] ${
-    ip ? `${ip} - ` : ""
-  }${text}`;
-  error ? console.error(message) : console.log(message);
+  return `[${date.toLocaleDateString()} ${date.toLocaleTimeString()}]`;
 };
 
-export default log;
+const consoleLog = (text, error = false) => {
+  error ? console.error(text) : console.log(text);
+};
+
+const log = (text, error) => {
+  const message = `${getDateTimeString()} ${text}`;
+  consoleLog(message, error);
+};
+
+const userLog = (text, userName, error) => {
+  const message = `${getDateTimeString()} [${userName}] - ${text}`;
+  consoleLog(message, error);
+};
+
+export { log, userLog };

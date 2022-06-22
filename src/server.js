@@ -1,16 +1,21 @@
 import WebSocket, { WebSocketServer } from "ws";
-import log from "./logger.js";
 
-const wss = new WebSocketServer({ port: 8080 });
+import { log, userLog } from "./logger.js";
+import { verifyClient } from "./authentification.js";
+
+const wss = new WebSocketServer({
+  port: 8080,
+  verifyClient,
+});
 
 log("websocket server started");
 
 wss.on("connection", (ws, req) => {
-  const ip = `${req.socket.remoteAddress}:${req.socket.remotePort}`;
-  log("connection opened", ip);
+  const userName = req.user.name;
+  userLog("connection opened", userName);
 
   ws.on("message", (message) => {
-    log("new message:", ip);
+    userLog("new message:", userName);
     console.log(message.toString());
     wss.clients.forEach((client) => {
       if (client !== ws && client.readyState === WebSocket.OPEN) {
@@ -20,11 +25,11 @@ wss.on("connection", (ws, req) => {
   });
 
   ws.on("close", () => {
-    log("connection closed", ip);
+    userLog("connection closed", userName);
   });
 
   ws.on("error", (error) => {
-    log("an error occured:", ip, true);
+    userLog("an error occured:", userName, true);
     console.error(error);
   });
 });
