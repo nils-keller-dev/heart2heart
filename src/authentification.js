@@ -9,7 +9,7 @@ const verifyClient = (info, cb) => {
 
   const reject = () => {
     userLog(
-      "verification rejected",
+      "connection rejected",
       `${info.req.socket.remoteAddress}:${info.req.socket.remotePort}`
     );
     cb(...unauthorized);
