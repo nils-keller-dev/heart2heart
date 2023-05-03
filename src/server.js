@@ -1,5 +1,4 @@
 import WebSocket, { WebSocketServer } from "ws";
-
 import { log, userLog } from "./logger.js";
 import { verifyClient } from "./authentification.js";
 

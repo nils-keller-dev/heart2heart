@@ -1,6 +1,6 @@
 import "dotenv/config";
 import jwt from "jsonwebtoken";
-import { log, userLog } from "./logger.js";
+import { userLog } from "./logger.js";
 
 const unauthorized = [false, 401, "Unauthorized"];
 
