@@ -4,7 +4,7 @@ const getDateTimeString = () => {
 };
 
 const consoleLog = (text, error = false) => {
-  error ? console.error(text) : console.log(text);
+  console[error ? "error" : "log"](text);
 };
 
 const log = (text, error) => {
