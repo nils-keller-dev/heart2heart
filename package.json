@@ -1,8 +1,19 @@
 {
   "name": "heart2heart",
-  "private": true,
   "type": "module",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "serve": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tsomic/heart2heart"
+  },
+  "author": {
+    "name": "Nils Keller",
+    "url": "https://github.com/tsomic"
+  },
   "dependencies": {
     "dotenv": "^16.0.3",
     "jsonwebtoken": "^9.0.0",
