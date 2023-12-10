@@ -1,6 +1,6 @@
 import WebSocket, { WebSocketServer } from "ws";
 import { log, userLog } from "./logger.js";
-import { verifyClient } from "./authentification.js";
+import { verifyClient } from "./authentication.js";
 
 const wss = new WebSocketServer({
   port: 8080,

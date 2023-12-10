@@ -5,7 +5,7 @@ This is the backend to the arduino project [heart2heart-arduino](https://github.
 ## Setting up the backend server
 
 Create a new file `.env` in the root directory.  
-That file should contain a secret key for authentification. See [.env.example](https://github.com/tsomic/heart2heart/blob/2a5ff743603818a7aac787f1743f2ddcf017b8f2/.env.example) for the syntax.
+That file should contain a secret key for authentication. See [.env.example](https://github.com/tsomic/heart2heart/blob/2a5ff743603818a7aac787f1743f2ddcf017b8f2/.env.example) for the syntax.
 
 You can then create your JSON Web Tokens, for example on [jwt.io](https://jwt.io).  
 The payload should at least contain a `name` attribute:
